@@ -5,248 +5,101 @@ Rectangle {
     id: r
     width: 500
     height: 500
-    color: 'transparent'
-    property color c1: 'red'
-    property color c2: 'red'
-    property color c3: 'red'
-    property color c4: 'red'
+    radius: width*0.5
+    rotation: 45
+    color: 'red'
     SequentialAnimation{
-        //running: true
+        running: true
         loops: Animation.Infinite
 
         NumberAnimation {
             target: r
             property: "rotation"
-            from: 0
-            to:180
-            duration: 5000
-            //easing.type: Easing.InOutQuad
+            duration: 1500
+            from:45
+            to:85
         }
     }
 
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        radius: width*0.5
-        color: 'blue'
-        Rectangle {
-            id: left
-            height: parent.height/2
-            anchors.left: parent.left
-            width: parent.width / 2
-            color: "red"
-            opacity: 0.25
-        }
-
-        Item {
-            id: r1
-            height: parent.height/2
-            anchors.bottom: parent.verticalCenter
-            anchors.left: parent.left
-            width: parent.width / 2
-            Rectangle{
-                anchors.fill: parent
-                color: 'red'
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0.00;
-                        color: "#ff0000";
-                    }
-                    GradientStop {
-                        position: 1.00;
-                        color: "#2e00ff";
-                    }
-                }
-                opacity: 0.25
-            }
-            //border.width: 2
-            //border.color: 'white'
-            Text {
-                text: '1'
-                color: 'white'
-                font.pixelSize: parent.width*0.5
-                anchors.centerIn: parent
-            }
-        }
-
-        Item {
-            id: r2
-            height: parent.height/2
-            anchors.bottom: parent.verticalCenter
-            anchors.right: parent.right
-            width: parent.width / 2
-            Rectangle{
-                anchors.fill: parent
-                color: 'red'
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0.00;
-                        color: "#ff0000";
-                    }
-                    GradientStop {
-                        position: 1.00;
-                        color: "#c606ec";
-                    }
-                }
-                opacity: 0.50
-            }
-            //border.width: 2
-            //border.color: 'white'
-            Text {
-                text: '2'
-                color: 'white'
-                font.pixelSize: parent.width*0.5
-                anchors.centerIn: parent
-            }
-        }
-        Item {
-            id: r3
-            height: parent.height/2
-            anchors.top: parent.verticalCenter
-            anchors.right: parent.right
-            width: parent.width / 2
-            Rectangle{
-                anchors.fill: parent
-                color: 'red'
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0.00;
-                        color: "#ff0000";
-                    }
-                    GradientStop {
-                        position: 1.00;
-                        color: "#2e00ff";
-                    }
-                }
-                //opacity: 0.25
-            }
-            //border.width: 2
-            //border.color: 'white'
-            Text {
-                text: '3'
-                color: 'white'
-                font.pixelSize: parent.width*0.5
-                anchors.centerIn: parent
-            }
-        }
-        Item {
-            id: r4
-            height: parent.height/2
-            anchors.top: parent.verticalCenter
-            anchors.left: parent.left
-            width: parent.width/2
-            Rectangle{
-                anchors.fill: parent
-                color: 'red'
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0.00;
-                        color: "#ff0000";
-                    }
-                    GradientStop {
-                        position: 1.00;
-                        color: "#2e00ff";
-                    }
-                }
-                opacity: 0.75
-            }
-            //border.width: 2
-            //border.color: 'white'
-            Text {
-                text: '4'
-                color: 'white'
-                font.pixelSize: parent.width*0.5
-                anchors.centerIn: parent
-            }
-        }
-
-    }
-    Rectangle {
-        id: foreground
-        anchors.fill: parent
-        color: "black"
-    }
-    Rectangle{
-        id: txt
-        width: r.width
-        height: width
-        radius: r.width*0.5
-        anchors.centerIn: parent
-
-    }
-    OpacityMask {
-        anchors.fill: r
-        source: background
-        maskSource: txt
-    }
-}
-/*import QtQuick 2.0
-import QtGraphicalEffects 1.0
-
-Item {
-    id: r
-    Rectangle{
-        id: r1
-        width: r.width
-        height: width
-        radius: width*0.5
-        anchors.centerIn: r
-        border.width: 2
-        border.color: 'red'
-        clip: true
-        color: "transparent"
-        Grid{
-            anchors.centerIn: parent
-            columns: 2
-            Rectangle{
-                width: r.width
-                height: r.height
-                color: 'red'
-            }
-            Rectangle{
-                width: r.width
-                height: r.height
-                color: 'blue'
-            }
-            Rectangle{
-                width: r.width
-                height: r.height
-                color: 'blue'
-            }
-            Rectangle{
-                width: r.width
-                height: r.height
-                color: 'red'
-            }
-        }
-    }
-    OpacityMask {
-        anchors.fill: r1
-        source: r1
-        maskSource: Rectangle {
-            width: r1.width
-            height: r1.height
-            radius: r1.width*0.5
-            visible: false // this also needs to be invisible or it will cover up the image
-        }
-    }
     Image {
         id: img1
-        source: "file:./img/t1.png"
-        anchors.fill: r
+        source: "file:./img/f1.png"
+        width: r.width*0.2
+        height: width
+        anchors.right: parent.right
+        rotation: 45
+    }
+
+    Rectangle{
+        color: 'transparent'
+        width: txt2.contentWidth*1.2
+        height: txt2.contentHeight*1.2
+        anchors.left: r.right
+        anchors.rightMargin: app.fs*4
+        radius: width*0.5
+        Rectangle{
+            anchors.fill: parent
+            color:'black'
+            radius: parent.radius
+            border.width: 2
+            border.color: 'white'
+
+        }
+        Rectangle{
+            width: app.fs*0.5
+            height: 2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.left
+        }
+        Text {
+            rotation: 0-r.rotation
+            id: txt2
+            text: 'Calor\nRechazado\npor el\nsol'
+            font.pixelSize: app.fs*0.5
+            color: 'white'
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+    Rectangle{
+        width: r.width*0.75
+        height: width*1.075
+        radius: width*0.5
+        color: 'blue'
+        //anchors.centerIn: r
+        anchors.verticalCenter: r.verticalCenter
+        //anchors.horizontalCenterOffset: 0-r.width*0.1
+        Text {
+            id: txt1
+            text: 'Frío\nAtraido\npor el\nsol'
+            font.pixelSize: app.fs*0.5
+            color: 'white'
+            anchors.centerIn: parent
+            rotation: 0-r.rotation
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+//    Rectangle{
+//        width: app.fs*20
+//        height: 4
+//        anchors.verticalCenter: r.verticalCenter
+//        rotation: -45
+//    }
+    /*F1{
+        width: r.width*2
+        height: app.fs
+        transform: Rotation { id: rot1; origin.x: 0; origin.y: app.fs*0.5; axis { x: 0; y: 1; z: 0 } angle: 54 }
         SequentialAnimation{
             running: true
             loops: Animation.Infinite
 
             NumberAnimation {
-                target: img1
-                property: "rotation"
+                target: rot1
+                property: "angle"
+                duration: 1500
                 from:0
-                to:360
-                duration: 4000
-                //easing.type: Easing.InOutQuad
+                to:85
             }
         }
     }*/
-
-
+}

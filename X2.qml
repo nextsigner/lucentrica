@@ -146,9 +146,11 @@ Rectangle {
                     }
                 }
                 TempTierra{
+                    id: tempTierra
                     width: tierra1.width
                     height: width
                     anchors.centerIn: tierra1
+                    visible: btnShowTempTierra.checked
                 }
                 Item{
                     width: tierra1.width*0.8
@@ -399,6 +401,11 @@ Rectangle {
                 //                onCheckedChanged: {
                 //                    os1.solXOffSet=checked?app.fs*4:0
                 //                }
+            }
+            Button{
+                id: btnShowTempTierra
+                text: 'Mostrar Temperatura Tierra'
+                checkable: true
             }
             Item{width: app.fs*2; height: 1}
             Button{
