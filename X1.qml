@@ -82,7 +82,10 @@ Rectangle {
         var tt1 = '<p style="font-size:'+fsp+'px;"><b>Teoría creada por: </b> Ricardo Martín Pizarro</p><p style="font-size:'+fsp+'px;"><b>Nacido en: </b>Malargue Mendoza República Argentina</p>
 <p style="font-size:'+fsp+'px;"><b>Fecha de Nacimiento:</b> 20/06/1975</p>
 <p style="font-size:'+fsp+'px;"><b>D.N.I:</b> 24.545.472</p>
-<p style="font-size:'+fsp+'px;"><b><b>Fecha de Publicación:</b> 16/07/2019</p>
+<p style="font-size:'+fsp+'px;"><b>Fecha de Publicación:</b> 16/07/2019</p>
+<p style="font-size:'+fsp+'px;"><b>E-Mail: </b> nextsigner@gmail.com</p>
+<p style="font-size:'+fsp+'px;"><b>Whatsapps:</b> +54 11 3802 4370</p>
+
 '
 
         t4.text=tt1

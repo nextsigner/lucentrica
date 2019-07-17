@@ -145,6 +145,11 @@ Rectangle {
                         }
                     }
                 }
+                TempTierra{
+                    width: tierra1.width
+                    height: width
+                    anchors.centerIn: tierra1
+                }
                 Item{
                     width: tierra1.width*0.8
                     height: width
@@ -221,8 +226,8 @@ Rectangle {
                 FSoltInv{
                     anchors.verticalCenter: tierra1.verticalCenter
                     anchors.verticalCenterOffset: 0-app.fs
-                    anchors.horizontalCenter: tierra1.horizontalCenter
-                    //visible: btnShowFSolt.checked&&modo.checked&&btnSolt.checked
+                   anchors.horizontalCenter: tierra1.horizontalCenter
+                    visible: btnShowFSolt.checked&&modo.checked&&btnSolt.checked
                 }
                 Item{
                     anchors.horizontalCenter: ol1.horizontalCenter
