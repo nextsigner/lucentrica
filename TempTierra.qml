@@ -66,9 +66,29 @@ Rectangle {
         height: width*1.075
         radius: width*0.5
         color: 'blue'
-        //anchors.centerIn: r
         anchors.verticalCenter: r.verticalCenter
         //anchors.horizontalCenterOffset: 0-r.width*0.1
+        Image {
+            id: img2
+            source: "file:./img/f1.png"
+            width: r.width*0.2
+            height: width
+            //anchors.right: parent.right
+            rotation: -60-r.rotation+70
+            Rectangle{
+                width: app.fs*6
+                height: 2
+                anchors.left: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                antialiasing: true
+                color: 'transparent'
+                F1{
+                    width: parent.width
+                    height: app.fs
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            }
+        }
         Text {
             id: txt1
             text: 'Frío\nAtraido\npor el\nsol'
@@ -79,27 +99,4 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
         }
     }
-//    Rectangle{
-//        width: app.fs*20
-//        height: 4
-//        anchors.verticalCenter: r.verticalCenter
-//        rotation: -45
-//    }
-    /*F1{
-        width: r.width*2
-        height: app.fs
-        transform: Rotation { id: rot1; origin.x: 0; origin.y: app.fs*0.5; axis { x: 0; y: 1; z: 0 } angle: 54 }
-        SequentialAnimation{
-            running: true
-            loops: Animation.Infinite
-
-            NumberAnimation {
-                target: rot1
-                property: "angle"
-                duration: 1500
-                from:0
-                to:85
-            }
-        }
-    }*/
 }
