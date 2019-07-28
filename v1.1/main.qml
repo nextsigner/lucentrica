@@ -9,6 +9,7 @@ ApplicationWindow{
     visibility: "Maximized"
     property int fs: Screen.width*0.02
     property int p: apps.up
+    property string version: '1.1'
     Settings{
         id: apps
         property string lang
@@ -25,12 +26,17 @@ ApplicationWindow{
     Item{
         id: xApp
         anchors.fill: parent
+        XIntoCol{
+            id: xIntroCol
+            visible: apps.up===0
+            onTerminado: apps.up=0
+        }
         X1{
             id: x1
-            visible: apps.up===0
-            onTerminado: apps.up=1
+            visible: apps.up===1
+            onTerminado: apps.up=2
         }
-        X2{id: x2; visible: apps.up===1}
+        X2{id: x2; visible: apps.up===2}
     }
 
 
@@ -55,12 +61,35 @@ ApplicationWindow{
         sequence: 'Ctrl+2'
         onActivated: apps.up=1
     }
+    Shortcut{
+        sequence: 'Right'
+        onActivated: {
+            if(apps.up<xApp.children.length-1){
+                apps.up++
+            }
+        }
+    }
+    Shortcut{
+        sequence: 'Left'
+        onActivated: {
+            if(apps.up>0){
+                apps.up--
+            }
+        }
+    }
     function setP(){
         if(apps.up===0){
-            x1.opacity=1.0
+            xIntroCol.opacity=1.0
+            x1.opacity=0.0
             x2.opacity=0.0
         }
         if(apps.up===1){
+            xIntroCol.opacity=0.0
+            x1.opacity=1.0
+            x2.opacity=0.0
+        }
+        if(apps.up===2){
+            xIntroCol.opacity=0.0
             x1.opacity=0.0
             x2.opacity=1.0
         }

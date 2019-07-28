@@ -20,6 +20,7 @@ Rectangle {
         property bool showEje1
         property bool showFS1
         property bool showFS2
+        property int view
         property bool runOl
     }
     onVisibleChanged: {
@@ -117,7 +118,9 @@ Rectangle {
                     anchors.horizontalCenterOffset: app.fs*1.5
                     showBorders: ms.showBorders
                     showingPeriApo: ms.showPeriApo
+                    showTags: !modo.checked
                     runRotation: ms.runOl
+                    showingFromSouthPole: ms.view===0
                     visible: !modo.checked
                 }
                 T1{
@@ -125,6 +128,22 @@ Rectangle {
                     width: app.fs*4
                     height: width
                     anchors.centerIn: parent                    
+                    showingFromSouthPole: ms.view===0
+                    MouseArea{
+                        width: app.fs*3
+                        height: width
+                        anchors.centerIn: parent
+                        onClicked: {
+                            if(ms.view==0){
+                                ms.view=1
+                                return
+                            }
+                            if(ms.view==1){
+                                ms.view=0
+                                return
+                            }
+                        }
+                    }
                 }
                 TempTierra{
                     id: tempTierra

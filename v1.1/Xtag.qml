@@ -8,10 +8,7 @@ Rectangle{
     border.width: 2
     radius: 4
     width: l1.contentWidth+app.fs
-    height: app.fs*0.75
-    anchors.bottom: parent.top
-    anchors.bottomMargin: app.fs
-    anchors.horizontalCenter: parent.horizontalCenter
+    height: l1.contentHeight+app.fs*0.5
     Xbg1{}
     Rectangle{
         id: line
@@ -25,5 +22,6 @@ Rectangle{
         font.pixelSize: app.fs*0.5
         anchors.centerIn: parent
         color: 'white';
+        horizontalAlignment: Text.AlignHCenter
     }
 }
