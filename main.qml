@@ -7,7 +7,6 @@ ApplicationWindow {
     visibility: "Maximized"
     color: 'black'
     property int fs: width*0.03
-    property string moduleName: 'lucentrica-master'
     Column{
         anchors.centerIn: parent
         spacing: app.fs
@@ -30,7 +29,7 @@ ApplicationWindow {
         onActivated: Qt.quit()
     }
     function run(folder){
-        var params='-folder='+pws+'/'+app.moduleName+'/'+folder
+        var params='-folder='+pws+'/'+unik.currentFolderName()+'/'+folder
         unik.setUnikStartSettings(params)
         if(Qt.platform.os==='android'){
 		unik.restartApp()
