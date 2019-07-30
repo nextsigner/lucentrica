@@ -32,6 +32,10 @@ ApplicationWindow {
     function run(folder){
         var params='-folder='+pws+'/'+app.moduleName+'/'+folder
         unik.setUnikStartSettings(params)
-        unik.restartApp()
-    }
+        if(Qt.platform.os==='android'){
+		unik.restartApp()
+	}else{
+		unik.restartApp("")
+    	}
+   }
 }
