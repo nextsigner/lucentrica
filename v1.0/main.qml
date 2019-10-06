@@ -8,6 +8,11 @@ ApplicationWindow{
     visible: true
     visibility: "Maximized"
     property int fs: Screen.width*0.02
+    property color c1
+    property color c2
+    property color c3
+    property color c4
+
     property int p: apps.up
     Settings{
         id: apps
@@ -16,6 +21,18 @@ ApplicationWindow{
         onUpChanged: setP()
         Component.onCompleted: {
             if(!lang)lang='es'
+        }
+    }
+    UnikSettings{
+        id: unikSettings
+        Component.onCompleted: {
+            unikSettings.currentNumColor=0
+            var tcs=unikSettings.defaultColors.split('|')
+            var c=tcs[unikSettings.currentNumColor].split('-')
+            c1=c[0]
+            c2=c[1]
+            c3=c[2]
+            c4=c[3]
         }
     }
     MediaPlayer{

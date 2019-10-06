@@ -5,6 +5,7 @@ Rectangle {
     border.width: showBorders?2:0
     border.color: 'red'
     color: 'transparent'
+    antialiasing: true
     property bool showSoltDes: false
     property bool showBorders
     property int solXOffSet: 0
@@ -17,6 +18,7 @@ Rectangle {
         anchors.fill: r
         radius: width*0.5
         color: "transparent"
+        antialiasing: true
     }
     S1{
         width: app.fs*18
@@ -35,11 +37,12 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: app.fs*8
             visible: r.showSoltDes
+            antialiasing: true
             Rectangle{
                 anchors.fill: parent
                 color: 'black'
                 opacity: 0.5
-
+                antialiasing: true
             }
             Rectangle{
                 width: app.fs*2;
@@ -47,13 +50,14 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.left
                 color: 'white'
+                antialiasing: true
                 Rectangle{
                     anchors.left: parent.left
                     width: 2;
                     height: app.fs*6
                     anchors.top: parent.bottom
                     color: 'white'
-
+                    antialiasing: true
                 }
             }
 

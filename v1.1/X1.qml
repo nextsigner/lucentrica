@@ -49,7 +49,18 @@ Rectangle {
         }
     }
     Button{
-        text: 'Siguiente'
+        text: unikSettings.lang==='es'?'Configurar':'Config'
+        anchors.left:  parent.left
+        anchors.leftMargin: app.fs
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: app.fs
+        onClicked: {
+            unik.cd('..')
+            engine.load('./main.qml')
+        }
+    }
+    Button{
+        text: unikSettings.lang==='es'?'Siguiente':'Next'
         anchors.right: parent.right
         anchors.rightMargin: app.fs
         anchors.bottom: parent.bottom

@@ -8,6 +8,7 @@ Rectangle {
     anchors.fill: parent
     color: 'black'
     opacity: 0.0
+    antialiasing: true
     property string moduleName: 'x2'
     signal terminado
     Behavior on opacity{NumberAnimation{duration: 1500}}
@@ -22,6 +23,7 @@ Rectangle {
         property bool showFS2
         property int view
         property bool runOl
+        property bool velGiroRap: false
     }
     onVisibleChanged: {
         if(visible)opacity=1.0
@@ -76,6 +78,7 @@ Rectangle {
                     border.color: 'white'
                     visible: ol1.s===1&&ms.showPeriApo||ol1.s===2&&ms.showPeriApo||setPeri.checked||setApo.checked
                     radius: app.fs*0.25
+                    antialiasing: true
                     Xbg1{
 
                     }
@@ -94,6 +97,7 @@ Rectangle {
                         height: parent.parent.height/2-app.fs*0.75-parent.height
                         anchors.top: parent.bottom
                         visible: ol1.s===2
+                        antialiasing: true
                     }
                     Rectangle{
                         id: lin2
@@ -102,6 +106,7 @@ Rectangle {
                         anchors.top: parent.bottom
                         anchors.right: parent.right
                         visible: ol1.s===1
+                        antialiasing: true
                     }
                 }
 
@@ -122,6 +127,7 @@ Rectangle {
                     runRotation: ms.runOl
                     showingFromSouthPole: ms.view===0
                     visible: !modo.checked
+                    velocity: tierra1.velocity
                 }
                 T1{
                     id:tierra1
@@ -129,6 +135,8 @@ Rectangle {
                     height: width
                     anchors.centerIn: parent                    
                     showingFromSouthPole: ms.view===0
+                    rotationEnable: ms.runOl
+                    velocity: ms.velGiroRap?2.0:6.0
                     MouseArea{
                         width: app.fs*3
                         height: width
@@ -163,6 +171,7 @@ Rectangle {
                         color: 'black'
                         anchors.fill: parent
                         radius: width*0.5
+                        antialiasing: true
                     }
 
                     anchors.centerIn: parent
@@ -172,6 +181,7 @@ Rectangle {
                         width: app.fs*2
                         height: width*0.75
                         anchors.centerIn: parent
+                        antialiasing: true
                         SequentialAnimation{
                             running: true
                             loops: Animation.Infinite
@@ -307,6 +317,16 @@ Rectangle {
                 }
             }
             Button{
+                id:btnGlVel
+                visible:!modo.checked
+                text: !ms.velGiroRap?'Velocidad de Giro: <b>Lento</b>':'Velocidad de Giro: <b>Ràpido</b>'
+                checkable: true
+                checked: ms.velGiroRap
+                onCheckedChanged: {
+                    ms.velGiroRap=checked
+                }
+            }
+            Button{
                 id:setPeri
                 visible:!modo.checked
                 text: 'Perigeo'
@@ -315,6 +335,7 @@ Rectangle {
                 onCheckedChanged: {
                     btnGlPrevS=btnGl.checked
                     ol1.forcingPeriApo=checked
+                    ms.showPeriApo=checked
                     if(checked){
                         if(setApo.checked)setApo.checked=false
                         btnGl.enabled=false
@@ -338,6 +359,9 @@ Rectangle {
                 text: 'Fuerzas Perigeo'
                 checkable: true
                 visible: setPeri.checked&&!modo.checked
+                onCheckedChanged: {
+                    ms.showPeriApo=checked
+                }
             }
             Button{
                 id:setApo
@@ -349,6 +373,7 @@ Rectangle {
                     //setPeri.checked=!checked
                     btnGlPrevS=btnGl.checked
                     ol1.forcingPeriApo=checked
+                    ms.showPeriApo=checked
                     if(checked){
                         if(setPeri.checked)setPeri.checked=false
                         btnGl.enabled=false
@@ -372,6 +397,9 @@ Rectangle {
                 text: 'Fuerzas Apo'
                 checkable: true
                 visible: setApo.checked&&!modo.checked
+                onCheckedChanged: {
+                    ms.showPeriApo=checked
+                }
             }
             Button{
                 visible:!modo.checked

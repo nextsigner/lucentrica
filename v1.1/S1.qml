@@ -8,5 +8,6 @@ Item {
         id: img1
         source: "file:./img/sol1.png"
         anchors.fill: r
+        antialiasing: true
     }
 }
