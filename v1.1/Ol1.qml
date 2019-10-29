@@ -64,7 +64,7 @@ Rectangle {
         }
     }
     Rectangle{
-        border.width: app.fs*0.1
+        border.width: app.fs*0.05
         border.color: 'white'
         anchors.fill: r
         radius: width*0.5
@@ -370,11 +370,7 @@ Rectangle {
             }
         }
 
-    }
-    Xtag{
-        text: anRot2.running&&!anRot4.running?'anrot2':'anrot4'
-        Behavior on opacity {NumberAnimation {duration: 250}}
-    }
+    }    
     Xtag{
         text: 'Velocidad\nMáxima\n1,08 Km/s'
         anchors.verticalCenter: parent.verticalCenter

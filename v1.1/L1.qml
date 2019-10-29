@@ -2,7 +2,7 @@ import QtQuick 2.0
 
 Rectangle {
     id: r
-    width: app.fs*2
+    width: app.fs
     height: width
     border.width: apps.showBorders?2:0
     border.color: 'green'

@@ -1,8 +1,10 @@
 import QtQuick 2.0
 
 Rectangle{
+    id: r
     property alias text: l1.text
     property alias lineLength: line.height
+    property int lineDir: 0
     color: 'transparent'
     border.color: 'white'
     border.width: 2
@@ -16,6 +18,16 @@ Rectangle{
         width: 2;
         anchors.top: parent.bottom
         color: 'white'
+        visible: r.lineDir===0
+    }
+    Rectangle{
+        id: line2
+        anchors.horizontalCenter: parent.horizontalCenter;
+        width: 2;
+        height: r.lineLength
+        anchors.bottom: parent.top
+        color: 'white'
+        visible: r.lineDir===1
     }
     Text {
         id: l1

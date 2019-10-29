@@ -13,7 +13,7 @@ Rectangle {
         NumberAnimation{duration: 250}
     }
     Rectangle{
-        border.width: app.fs*0.1
+        border.width: app.fs*0.05
         border.color: 'white'
         anchors.fill: r
         radius: width*0.5
@@ -21,7 +21,7 @@ Rectangle {
         antialiasing: true
     }
     S1{
-        width: app.fs*18
+        width: app.fs*8
         height: width
         anchors.centerIn: parent
         anchors.horizontalCenterOffset: r.solXOffSet
@@ -71,6 +71,14 @@ Rectangle {
                 font.pixelSize: app.fs*0.75
                 color: 'white'
             }
+        }
+        Xtag{
+            id: desPlasmaCaliente
+            text: 'Plasma Caliente de Alta Densidad\nExpansivo'
+            lineLength: app.fs*5.5
+            anchors.centerIn: parent
+            anchors.verticalCenterOffset: app.fs*6.5
+            lineDir: 1
         }
     }
     property string t1

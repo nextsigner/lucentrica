@@ -6,7 +6,7 @@ import Qt.labs.settings 1.0
 ApplicationWindow{
     id: app
     visible: true
-    visibility: "Maximized"
+    visibility: "FullScreen"//"Maximized"
     property int fs: Screen.width*0.02
     property color c1
     property color c2

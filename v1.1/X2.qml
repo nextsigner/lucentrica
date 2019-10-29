@@ -45,7 +45,7 @@ Rectangle {
             Text {
                 id: t1
                 text: '<b>Teoría Lucéntrica</b>'
-                font.pixelSize: app.fs*2
+                font.pixelSize: app.fs
                 color: 'white'
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
@@ -60,12 +60,12 @@ Rectangle {
                 height: r.height-xTit.height-app.fs*2-rowBtns.children[0].height
                 Os1{
                     id:os1
-                    width: app.fs*32
+                    width: app.fs*20
                     height: width
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.horizontalCenter
                     showBorders: ms.showBorders
-                    showSoltDes: modo.checked
+                    showSoltDes: modo.checked                    
                 }
                 Rectangle{
                     id:xDes
@@ -118,7 +118,7 @@ Rectangle {
                 Ol1{
                     id: ol1
                     anchors.centerIn: parent
-                    width: app.fs*12
+                    width: app.fs*10
                     height: width
                     anchors.horizontalCenterOffset: app.fs*1.5
                     showBorders: ms.showBorders
@@ -131,7 +131,7 @@ Rectangle {
                 }
                 T1{
                     id:tierra1
-                    width: app.fs*4
+                    width: app.fs*2
                     height: width
                     anchors.centerIn: parent                    
                     showingFromSouthPole: ms.view===0
@@ -226,7 +226,16 @@ Rectangle {
                                 duration: 2000
                                 //easing.type: Easing.InOutQuad
                             }
-                        }
+                        }                       
+                    }
+                    Xtag{
+                        id: desPlasmaFrio
+                        text: 'Plasma Frío de Baja Densidad\nDecreciente'
+                        lineLength: app.fs*5.5
+                        anchors.top: parent.bottom
+                        anchors.topMargin: app.fs*5
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        lineDir: 1
                     }
                 }
                 FSoltVer{
@@ -280,7 +289,7 @@ Rectangle {
             }
             Item{
                 width: r.width*0.5
-                height: r.height-xTit.height-app.fs
+                height: r.height-xTit.height-app.fs                
             }
         }
         Row{
