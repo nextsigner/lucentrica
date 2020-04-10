@@ -2,12 +2,12 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Window 2.0
 import QtMultimedia 5.12
-import Qt.labs.settings 1.0
+import Qt.labs.settings 1.1
 ApplicationWindow{
     id: app
     visible: true
     visibility: "FullScreen"//"Maximized"
-    property int fs: Screen.width*0.02
+    property int fs: Screen.width*0.018
     property color c1
     property color c2
     property color c3
@@ -24,8 +24,9 @@ ApplicationWindow{
             if(!lang)lang='es'
         }
     }
-    UnikSettings{
+    USettings{
         id: unikSettings
+        url:'conflucentrica'
         Component.onCompleted: {
             unikSettings.currentNumColor=0
             var tcs=unikSettings.defaultColors.split('|')
@@ -54,7 +55,7 @@ ApplicationWindow{
             onTerminado: apps.up=2
         }
         X2{id: x2; visible: apps.up===2}
-        UWarnings{}
+        //UWarnings{}
     }
 
 

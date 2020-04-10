@@ -13,13 +13,13 @@ ApplicationWindow {
     property color c3
     property color c4
 
-    UnikSettings{
+    USettings{
         id: unikSettings
         property color c1
         property color c2
         property color c3
         property color c4
-        //url: './cfg.json'
+        url: './lucentrica.json'
         Component.onCompleted: {
             unikSettings.currentNumColor=0
             var tcs=unikSettings.defaultColors.split('|')

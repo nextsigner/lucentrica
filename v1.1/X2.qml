@@ -10,6 +10,7 @@ Rectangle {
     opacity: 0.0
     antialiasing: true
     property string moduleName: 'x2'
+    property int fs: app.fs*0.5
     signal terminado
     Behavior on opacity{NumberAnimation{duration: 1500}}
     Settings{
@@ -65,7 +66,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.horizontalCenter
                     showBorders: ms.showBorders
-                    showSoltDes: modo.checked                    
+                    showSoltDes: modo.checked
                 }
                 Rectangle{
                     id:xDes
@@ -133,7 +134,7 @@ Rectangle {
                     id:tierra1
                     width: app.fs*2
                     height: width
-                    anchors.centerIn: parent                    
+                    anchors.centerIn: parent
                     showingFromSouthPole: ms.view===0
                     rotationEnable: ms.runOl
                     velocity: ms.velGiroRap?2.0:6.0
@@ -226,7 +227,7 @@ Rectangle {
                                 duration: 2000
                                 //easing.type: Easing.InOutQuad
                             }
-                        }                       
+                        }
                     }
                     Xtag{
                         id: desPlasmaFrio
@@ -247,7 +248,7 @@ Rectangle {
                 FSoltInv{
                     anchors.verticalCenter: tierra1.verticalCenter
                     anchors.verticalCenterOffset: 0-app.fs
-                   anchors.horizontalCenter: tierra1.horizontalCenter
+                    anchors.horizontalCenter: tierra1.horizontalCenter
                     visible: btnShowFSolt.checked&&modo.checked&&btnSolt.checked
                 }
                 Item{
@@ -289,181 +290,196 @@ Rectangle {
             }
             Item{
                 width: r.width*0.5
-                height: r.height-xTit.height-app.fs                
-            }
-        }
-        Row{
-            id:rowBtns
-            spacing: app.fs*0.5
-            Button{
-                text: '<<'
-                onClicked: {
-                    apps.up=0
-                }
-            }
-            Button{
-                id:modo
-                text: !checked?'Luna/Tierra':'Tierra/Sol'
-                checkable:true
-            }
-            Button{
-                text: ms.showL1?'Ocultar Luz 1':'Mostrar Luz 1'
-                checkable: true
-                checked: ms.showL1
-                onCheckedChanged: {
-                    ms.showL1=checked
-                }
-            }
-            Button{
-                id:btnGl
-                visible:!modo.checked
-                text: !ms.runOl?'Girar Luna':'Detener Luna'
-                checkable: true
-                checked: ms.runOl
-                onCheckedChanged: {
-                    //ol1.runRotation=ms.runOl
-                    ms.runOl=checked
-                }
-            }
-            Button{
-                id:btnGlVel
-                visible:!modo.checked
-                text: !ms.velGiroRap?'Velocidad de Giro: <b>Lento</b>':'Velocidad de Giro: <b>Ràpido</b>'
-                checkable: true
-                checked: ms.velGiroRap
-                onCheckedChanged: {
-                    ms.velGiroRap=checked
-                }
-            }
-            Button{
-                id:setPeri
-                visible:!modo.checked
-                text: 'Perigeo'
-                checkable: true
-                property bool btnGlPrevS
-                onCheckedChanged: {
-                    btnGlPrevS=btnGl.checked
-                    ol1.forcingPeriApo=checked
-                    ms.showPeriApo=checked
-                    if(checked){
-                        if(setApo.checked)setApo.checked=false
-                        btnGl.enabled=false
-                        btnGl.checked=false
-                        ms.runOl=false
-                        ol1.rotation=-90
-                        ol1.s=2
-                    }else{
-                        botShowFPeri.checked=false
-                        btnGl.enabled=true
-                        btnGl.checked=btnGlPrevS
-                        ol1.rotation=0
-                        //ol1.s=0
-                        ms.runOl=btnGl.checked
-                    }
-
-                }
-            }
-            Button{
-                id:botShowFPeri
-                text: 'Fuerzas Perigeo'
-                checkable: true
-                visible: setPeri.checked&&!modo.checked
-                onCheckedChanged: {
-                    ms.showPeriApo=checked
-                }
-            }
-            Button{
-                id:setApo
-                visible:!modo.checked
-                text: 'Apogeo'
-                checkable: true
-                property bool btnGlPrevS
-                onCheckedChanged: {
-                    //setPeri.checked=!checked
-                    btnGlPrevS=btnGl.checked
-                    ol1.forcingPeriApo=checked
-                    ms.showPeriApo=checked
-                    if(checked){
-                        if(setPeri.checked)setPeri.checked=false
-                        btnGl.enabled=false
-                        btnGl.checked=false
-                        ms.runOl=false
-                        ol1.rotation=90
-                        ol1.s=1
-                    }else{
-                        botShowFApo.checked=false
-                        btnGl.enabled=true
-                        btnGl.checked=btnGlPrevS
-                        ol1.rotation=0
-                        //ol1.s=0
-                        ms.runOl=btnGl.checked
-                    }
-
-                }
-            }
-            Button{
-                id:botShowFApo
-                text: 'Fuerzas Apo'
-                checkable: true
-                visible: setApo.checked&&!modo.checked
-                onCheckedChanged: {
-                    ms.showPeriApo=checked
-                }
-            }
-            Button{
-                visible:!modo.checked
-                text: ms.showPeriApo?'Ocultar Perigeo/Apogeo':'Mostrar Perigeo/Apogeo'
-                checkable: true
-                checked: ms.showPeriApo
-                onCheckedChanged: {
-                    ms.showPeriApo=checked
-                }
-            }
-            //Btns Solticio
-            Button{
-                id:btnSolt
-                visible:modo.checked
-                text: !checked?'Solticio Verano':'Solticio Invierno'
-                checkable: true
-                checked: ms.runOl
-                onCheckedChanged: {
-                    os1.solXOffSet=checked?app.fs*4:0
-                }
-            }
-            Button{
-                id:btnShowFSolt
-                visible:modo.checked
-                text: !checked?'Mostrar Atracción':'Ocultar Atracción'
-                checkable: true
-                //                onCheckedChanged: {
-                //                    os1.solXOffSet=checked?app.fs*4:0
-                //                }
-            }
-            Button{
-                id: btnShowTempTierra
-                text: 'Mostrar Temperatura Tierra'
-                checkable: true
-            }
-            Item{width: app.fs*2; height: 1}
-            Button{
-                text: checked?'Ocultar Eje':'Mostrar Eje'
-                checkable: true
-                checked: ms.showEje1
-                onCheckedChanged: {
-                    ms.showEje1=!ms.showEje1
-                }
-            }
-            Button{
-                text: 'Mostrar Bordes'
-                checkable: true
-                checked: ms.showBorders
-                onCheckedChanged: {
-                    ms.showBorders=checked
-                }
+                height: r.height-xTit.height-app.fs
             }
         }
     }
+    Row{
+        id:rowBtns
+        spacing: app.fs*0.5
+        anchors.bottom: r.bottom
+        Button{
+            font.pixelSize: r.fs
+            text: '<<'
+            onClicked: {
+                apps.up=0
+            }
+        }
+        Button{
+            id:modo
+            font.pixelSize: r.fs
+            text: !checked?'Luna/Tierra':'Tierra/Sol'
+            checkable:true
+        }
+        Button{
+            font.pixelSize: r.fs
+            text: ms.showL1?'Ocultar Luz 1':'Mostrar Luz 1'
+            checkable: true
+            checked: ms.showL1
+            onCheckedChanged: {
+                ms.showL1=checked
+            }
+        }
+        Button{
+            id:btnGl
+            font.pixelSize: r.fs
+            visible:!modo.checked
+            text: !ms.runOl?'Girar Luna':'Detener Luna'
+            checkable: true
+            checked: ms.runOl
+            onCheckedChanged: {
+                //ol1.runRotation=ms.runOl
+                ms.runOl=checked
+            }
+        }
+        Button{
+            id:btnGlVel
+            font.pixelSize: r.fs
+            visible:!modo.checked
+            text: !ms.velGiroRap?'Velocidad de Giro: <b>Lento</b>':'Velocidad de Giro: <b>Ràpido</b>'
+            checkable: true
+            checked: ms.velGiroRap
+            onCheckedChanged: {
+                ms.velGiroRap=checked
+            }
+        }
+        Button{
+            id:setPeri
+            font.pixelSize: r.fs
+            visible:!modo.checked
+            text: 'Perigeo'
+            checkable: true
+            property bool btnGlPrevS
+            onCheckedChanged: {
+                btnGlPrevS=btnGl.checked
+                ol1.forcingPeriApo=checked
+                ms.showPeriApo=checked
+                if(checked){
+                    if(setApo.checked)setApo.checked=false
+                    btnGl.enabled=false
+                    btnGl.checked=false
+                    ms.runOl=false
+                    ol1.rotation=-90
+                    ol1.s=2
+                }else{
+                    botShowFPeri.checked=false
+                    btnGl.enabled=true
+                    btnGl.checked=btnGlPrevS
+                    ol1.rotation=0
+                    //ol1.s=0
+                    ms.runOl=btnGl.checked
+                }
 
+            }
+        }
+        Button{
+            id:botShowFPeri
+            font.pixelSize: r.fs
+            text: 'Fuerzas Perigeo'
+            checkable: true
+            visible: setPeri.checked&&!modo.checked
+            onCheckedChanged: {
+                ms.showPeriApo=checked
+            }
+        }
+        Button{
+            id:setApo
+            visible:!modo.checked
+            font.pixelSize: r.fs
+            text: 'Apogeo'
+            checkable: true
+            property bool btnGlPrevS
+            onCheckedChanged: {
+                //setPeri.checked=!checked
+                btnGlPrevS=btnGl.checked
+                ol1.forcingPeriApo=checked
+                ms.showPeriApo=checked
+                if(checked){
+                    if(setPeri.checked)setPeri.checked=false
+                    btnGl.enabled=false
+                    btnGl.checked=false
+                    ms.runOl=false
+                    ol1.rotation=90
+                    ol1.s=1
+                }else{
+                    botShowFApo.checked=false
+                    btnGl.enabled=true
+                    btnGl.checked=btnGlPrevS
+                    ol1.rotation=0
+                    //ol1.s=0
+                    ms.runOl=btnGl.checked
+                }
+
+            }
+        }
+        Button{
+            id:botShowFApo
+            font.pixelSize: r.fs
+            text: 'Fuerzas Apo'
+            checkable: true
+            visible: setApo.checked&&!modo.checked
+            onCheckedChanged: {
+                ms.showPeriApo=checked
+            }
+        }
+        Button{
+            visible:!modo.checked
+            font.pixelSize: r.fs
+            text: ms.showPeriApo?'Ocultar Perigeo/Apogeo':'Mostrar Perigeo/Apogeo'
+            checkable: true
+            checked: ms.showPeriApo
+            onCheckedChanged: {
+                ms.showPeriApo=checked
+            }
+        }
+        //Btns Solticio
+        Button{
+            id:btnSolt
+            visible:modo.checked
+            font.pixelSize: r.fs
+            text: !checked?'Solticio Verano':'Solticio Invierno'
+            checkable: true
+            checked: ms.runOl
+            onCheckedChanged: {
+                os1.solXOffSet=checked?app.fs*4:0
+            }
+        }
+        Button{
+            id:btnShowFSolt
+            visible:modo.checked
+            font.pixelSize: r.fs
+            text: !checked?'Mostrar Atracción':'Ocultar Atracción'
+            checkable: true
+            //                onCheckedChanged: {
+            //                    os1.solXOffSet=checked?app.fs*4:0
+            //                }
+        }
+        Button{
+            id: btnShowTempTierra
+            font.pixelSize: r.fs
+            text: 'Mostrar Temperatura Tierra'
+            checkable: true
+        }
+        Item{width: app.fs*2; height: 1}
+        Button{
+            font.pixelSize: r.fs
+            text: checked?'Ocultar Eje':'Mostrar Eje'
+            checkable: true
+            checked: ms.showEje1
+            onCheckedChanged: {
+                ms.showEje1=!ms.showEje1
+            }
+        }
+        Button{
+            font.pixelSize: r.fs
+            text: 'Mostrar Bordes'
+            checkable: true
+            checked: ms.showBorders
+            onCheckedChanged: {
+                ms.showBorders=checked
+            }
+        }
+    }
     Timer{
         running: r.visible
         repeat: false
