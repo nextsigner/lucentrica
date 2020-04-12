@@ -85,6 +85,9 @@ ApplicationWindow {
         sequence: 'Esc'
         onActivated: Qt.quit()
     }
+    Component.onCompleted: {
+        //engine.clearComponentCache()
+    }
     function run(folder){
         unik.cd(unik.currentFolderPath()+'/'+folder)
         engine.load('./main.qml')

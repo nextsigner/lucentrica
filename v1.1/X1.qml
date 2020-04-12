@@ -5,7 +5,7 @@ Rectangle {
     id: r
     anchors.fill: parent
     opacity: 0.0
-    color: 'black'
+    color: 'red'
     property string moduleName: 'x1'
     signal terminado
     Behavior on opacity{NumberAnimation{duration: 1500}}

@@ -19,7 +19,7 @@ Rectangle {
         spacing: app.fs
         Text {
             id: t1
-            text: '<b>Teoría Lucéntrica</b><br><b style="font-size:'+parseInt(app.fs)+'px;">Lenguaje Castelleno - Versión '+app.version+'</b>'
+            text: '<b>Teoría Lucéntrica</b><br><b style="font-size:'+parseInt(app.fs)+'px;">Lenguaje Castellano - Versión '+app.version+'</b>'
             textFormat: Text.RichText
             font.pixelSize: app.fs*2
             color: 'white'
