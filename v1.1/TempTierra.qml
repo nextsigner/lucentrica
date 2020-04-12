@@ -33,7 +33,7 @@ Rectangle {
     Rectangle{
         color: 'transparent'
         width: txt2.contentWidth*1.2
-        height: txt2.contentHeight*1.2
+        height: width//txt2.contentHeight*1.2
         anchors.left: r.right
         anchors.rightMargin: app.fs*4
         radius: width*0.5
@@ -55,7 +55,7 @@ Rectangle {
             rotation: 0-r.rotation
             id: txt2
             text: 'Calor\nRechazado\npor el\nsol'
-            font.pixelSize: app.fs*0.5
+            font.pixelSize: parent.width*0.15
             color: 'white'
             anchors.centerIn: parent
             horizontalAlignment: Text.AlignHCenter
@@ -90,7 +90,7 @@ Rectangle {
         Text {
             id: txt1
             text: 'Frío\nAtraido\npor el\nsol'
-            font.pixelSize: app.fs*0.5
+            font.pixelSize: parent.width*0.25
             color: 'white'
             anchors.centerIn: parent
             rotation: 0-r.rotation
